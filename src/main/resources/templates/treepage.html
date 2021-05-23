@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"> 
+    <head>
+        <meta charset="utf-8"></meta>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta>
+        <title>
+            Balancing Tree
+        </title>
+            <script src="js/jquery-1.9.1.min.js"></script>
+            <script src="js/bootstrap.min.js"></script>
+            <script src="js/angular-1.7.5.min.js"></script>
+            <script src="js/treescript.js"></script>
+    </head>
+    <body ng-app="treedata" ng-controller="DataController" bgcolor="#A9A9A9">
+        <h1>Balancing Binary Tree</h1>
+        <table><tr>
+            <td>
+                <form role="form" ng-submit="addData()">
+                    <table>
+                        <tr><td>To Add:</td>
+                            <td><input type="number" id="add" onkeyup="check_add();" ng-model="inputdata" onchange="check_add();" name="value"/></td>
+                        <td><input type="submit" name="add" id="badd" value="Add" disabled="disabled"/></td></tr>
+                    </table>
+                </form>
+            </td>
+            <td>
+                <form role="form" ng-submit="delData()">
+                    <table>
+                        <tr><td>To Delete:</td><td><input type="number" id="del" ng-model="deldata" onkeyup="check_del();" onchange="check_del();" name="value"/></td>
+                        <td><input type="submit" name="delete" id="bdel" value="Delete" disabled="disabled"/></td></tr>
+                    </table>
+                </form>
+            </td>
+            <td>
+            <form role="form" ng-submit="clearData()">
+                <table>
+                    <tr><td><input type="submit" name="clear" id="clear" value="Clear" disabled="disabled"/></td></tr>
+                </table>
+            </form>
+        </td>
+        <td>
+            <form role="form" ng-submit="balanceData()">
+                <table>
+                    <tr><td><input type="submit" name="balance" id="balance" value="Balance" disabled="disabled"/></td></tr>
+                </table>
+            </form>
+        </td>
+        <td>
+            <form role="form" ng-submit="back()">
+                <table>
+                    <tr><td><input type="submit" name="back" id="back" value="Back" disabled="disabled"/></td></tr>
+                </table>
+            </form>
+        </td>
+        <td>Balance Factors</td>
+        <td>
+            <input type="text" id="bfactors" name="bdactors" value="{{str.bfs}}"></input>
+        </td>
+        <td>Action</td>
+        <td>
+            <input type="text" id="actions" name="actions" value="{{str.command}}"></input>
+        </td>
+        </tr></table>
+        <center>
+            <div id="textareatree">
+                    <textarea cols = "100" rows = "100" wrap = "off" id="treetext" ng-controller="getTree">{{str.data}}</textarea>
+            </div>
+        </center>
+    </body>
+</html>
