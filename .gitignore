@@ -1,3 +1,4 @@
 /target/
+/chromedriver/
 *.log
 nb-configuration.xml

@@ -14,6 +14,7 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <webdriver.chrome>chromedriver\\chromedriver.exe</webdriver.chrome>
     </properties>
 
     
@@ -50,6 +51,16 @@
             <artifactId>derby</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>3.0.0-beta3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-chrome-driver</artifactId>
+            <version>3.0.0-beta3</version>
+        </dependency>
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.9</version>
@@ -69,6 +80,15 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.7.1</version>
+                <configuration>
+                    <systemPropertyVariables>
+                        <webdriver.chrome.driver>${webdriver.chrome}</webdriver.chrome.driver>
+                    </systemPropertyVariables>
+                </configuration>
             </plugin>
         </plugins>
     </build>
