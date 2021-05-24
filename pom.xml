@@ -14,7 +14,7 @@
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <webdriver.chrome>chromedriver\\chromedriver.exe</webdriver.chrome>
+        <webdriver.chrome>Chromedriver/chromedriver</webdriver.chrome>
     </properties>
 
     

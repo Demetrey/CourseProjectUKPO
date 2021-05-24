@@ -13,6 +13,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 /**
  *
@@ -23,7 +24,9 @@ public class WebUTest {
     
     @Before
     public void setUp() {
-        driver = new ChromeDriver();
+        ChromeOptions ChromeOptions = new ChromeOptions();
+        ChromeOptions.addArguments("--headless", "window-size=1024,768", "--no-sandbox");
+	driver = new ChromeDriver(ChromeOptions);
     }
     
     /**
@@ -41,11 +44,12 @@ public class WebUTest {
     public void testAdd() throws InterruptedException {
         driver.navigate().to("http://localhost:8080/treepage");
         driver.findElement(By.id("add")).sendKeys("1");
+		Thread.sleep(1000);
         driver.findElement(By.id("badd")).click();
         (new WebDriverWait(driver, 10)).until(
             (ExpectedCondition<Boolean>) (WebDriver d) -> d.findElement(By.id("bfactors"))
                 .getAttribute("value").equals("0"));
-        Thread.sleep(1000);
+        Thread.sleep(1000); 
         driver.findElement(By.id("clear")).click();
         driver.close();
     }
@@ -54,8 +58,9 @@ public class WebUTest {
     public void testClear() throws InterruptedException {
         driver.navigate().to("http://localhost:8080/treepage");
         driver.findElement(By.id("add")).sendKeys("1");
+		Thread.sleep(1000);
         driver.findElement(By.id("badd")).click();
-        Thread.sleep(1000);
+        Thread.sleep(1000); 
         driver.findElement(By.id("clear")).click();
         (new WebDriverWait(driver, 10)).until(
             (ExpectedCondition<Boolean>) (WebDriver d) -> d.findElement(By.id("bfactors"))
@@ -67,14 +72,16 @@ public class WebUTest {
     public void testBack() throws InterruptedException {
         driver.navigate().to("http://localhost:8080/treepage");
         driver.findElement(By.id("add")).sendKeys("10");
+		Thread.sleep(1000);
         driver.findElement(By.id("badd")).click();
         Thread.sleep(1000);
         driver.findElement(By.id("clear")).click();
+		Thread.sleep(1000);
         driver.findElement(By.id("back")).click();
         (new WebDriverWait(driver, 10)).until(
             (ExpectedCondition<Boolean>) (WebDriver d) -> d.findElement(By.id("bfactors"))
                 .getAttribute("value").equals("0"));
-        Thread.sleep(1000);
+        Thread.sleep(1000); 
         driver.findElement(By.id("clear")).click();
         driver.close();
     }
@@ -83,16 +90,20 @@ public class WebUTest {
     public void testBalance() throws InterruptedException {
         driver.navigate().to("http://localhost:8080/treepage");
         driver.findElement(By.id("add")).sendKeys("1");
+		Thread.sleep(1000);
         driver.findElement(By.id("badd")).click();
         driver.findElement(By.id("add")).sendKeys("2");
+		Thread.sleep(1000);
         driver.findElement(By.id("badd")).click();
         driver.findElement(By.id("add")).sendKeys("3");
+		Thread.sleep(1000);
         driver.findElement(By.id("badd")).click();
+        Thread.sleep(1000);
         driver.findElement(By.id("balance")).click();
         (new WebDriverWait(driver, 10)).until(
             (ExpectedCondition<Boolean>) (WebDriver d) -> d.findElement(By.id("bfactors"))
                 .getAttribute("value").equals("000"));
-        Thread.sleep(1000);
+        Thread.sleep(1000); 
         driver.findElement(By.id("clear")).click();
         driver.close();
     }
@@ -101,13 +112,15 @@ public class WebUTest {
     public void testRemove() throws InterruptedException {
         driver.navigate().to("http://localhost:8080/treepage");
         driver.findElement(By.id("add")).sendKeys("1");
+		Thread.sleep(1000);
         driver.findElement(By.id("badd")).click();
         driver.findElement(By.id("del")).sendKeys("1");
+		Thread.sleep(1000);
         driver.findElement(By.id("bdel")).click();
         (new WebDriverWait(driver, 10)).until(
             (ExpectedCondition<Boolean>) (WebDriver d) -> d.findElement(By.id("bfactors"))
                 .getAttribute("value").equals(""));
-        Thread.sleep(1000);
+        Thread.sleep(1000); 
         driver.findElement(By.id("clear")).click();
         driver.close();
     }
