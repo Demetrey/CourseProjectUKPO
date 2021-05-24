@@ -1,0 +1,43 @@
+# Test Integration with GitHub Actions
+
+name: Tests
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+    
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: JDK 8 setup
+        uses: actions/setup-java@v2
+        with:
+          java-version: '8'
+          distribution: 'adopt'
+          
+      - name: Chrome setup
+        uses: browser-actions/setup-chrome@latest
+        
+      - name: Chromedriver setup
+        run: |
+          wget https://chromedriver.storage.googleapis.com/90.0.4430.24/chromedriver_linux64.zip 
+          unzip chromedriver_linux64.zip -d Chromedriver
+        
+      - name: MVN build project without tests
+        run: mvn package -DskipTests
+        
+      - name: Run server
+        run: | 
+          mvn spring-boot:run &
+          sleep 20
+          
+      - name: Test with Maven
+        run: mvn test
