@@ -35,7 +35,7 @@ public class WebUTest {
     @Test
     public void testGotoWebsite() {
         driver.navigate().to("http://localhost:8080/treepage");
-        (new WebDriverWait(driver, 10)).until((ExpectedCondition<Boolean>) (WebDriver d) -> d.getPageSource()
+        (new WebDriverWait(driver, 20)).until((ExpectedCondition<Boolean>) (WebDriver d) -> d.getPageSource()
                 .contains("Balancing Binary Tree"));
         driver.close();
     }
@@ -44,13 +44,15 @@ public class WebUTest {
     public void testAdd() throws InterruptedException {
         driver.navigate().to("http://localhost:8080/treepage");
         driver.findElement(By.id("add")).sendKeys("1");
-		Thread.sleep(1000);
+	Thread.sleep(1000);
         driver.findElement(By.id("badd")).click();
-        (new WebDriverWait(driver, 10)).until(
+        Thread.sleep(1000);
+        (new WebDriverWait(driver, 30)).until(
             (ExpectedCondition<Boolean>) (WebDriver d) -> d.findElement(By.id("bfactors"))
                 .getAttribute("value").equals("0"));
         Thread.sleep(1000); 
         driver.findElement(By.id("clear")).click();
+        Thread.sleep(1000);
         driver.close();
     }
     
@@ -58,11 +60,12 @@ public class WebUTest {
     public void testClear() throws InterruptedException {
         driver.navigate().to("http://localhost:8080/treepage");
         driver.findElement(By.id("add")).sendKeys("1");
-		Thread.sleep(1000);
+	Thread.sleep(1000);
         driver.findElement(By.id("badd")).click();
         Thread.sleep(1000); 
         driver.findElement(By.id("clear")).click();
-        (new WebDriverWait(driver, 10)).until(
+        Thread.sleep(1000);
+        (new WebDriverWait(driver, 30)).until(
             (ExpectedCondition<Boolean>) (WebDriver d) -> d.findElement(By.id("bfactors"))
                 .getAttribute("value").equals(""));
         driver.close();
@@ -72,17 +75,18 @@ public class WebUTest {
     public void testBack() throws InterruptedException {
         driver.navigate().to("http://localhost:8080/treepage");
         driver.findElement(By.id("add")).sendKeys("10");
-		Thread.sleep(1000);
+	Thread.sleep(1000);
         driver.findElement(By.id("badd")).click();
         Thread.sleep(1000);
         driver.findElement(By.id("clear")).click();
-		Thread.sleep(1000);
+	Thread.sleep(1000);
         driver.findElement(By.id("back")).click();
-        (new WebDriverWait(driver, 10)).until(
+        Thread.sleep(1000);
+        (new WebDriverWait(driver, 30)).until(
             (ExpectedCondition<Boolean>) (WebDriver d) -> d.findElement(By.id("bfactors"))
                 .getAttribute("value").equals("0"));
-        Thread.sleep(1000); 
         driver.findElement(By.id("clear")).click();
+        Thread.sleep(1000);
         driver.close();
     }
     
@@ -90,21 +94,24 @@ public class WebUTest {
     public void testBalance() throws InterruptedException {
         driver.navigate().to("http://localhost:8080/treepage");
         driver.findElement(By.id("add")).sendKeys("1");
-		Thread.sleep(1000);
+	Thread.sleep(1000);
         driver.findElement(By.id("badd")).click();
+        Thread.sleep(1000);
         driver.findElement(By.id("add")).sendKeys("2");
-		Thread.sleep(1000);
+	Thread.sleep(1000);
         driver.findElement(By.id("badd")).click();
+        Thread.sleep(1000);
         driver.findElement(By.id("add")).sendKeys("3");
-		Thread.sleep(1000);
+	Thread.sleep(1000);
         driver.findElement(By.id("badd")).click();
         Thread.sleep(1000);
         driver.findElement(By.id("balance")).click();
-        (new WebDriverWait(driver, 10)).until(
+        Thread.sleep(1000);
+        (new WebDriverWait(driver, 30)).until(
             (ExpectedCondition<Boolean>) (WebDriver d) -> d.findElement(By.id("bfactors"))
                 .getAttribute("value").equals("000"));
-        Thread.sleep(1000); 
         driver.findElement(By.id("clear")).click();
+        Thread.sleep(1000);
         driver.close();
     }
     
@@ -112,16 +119,18 @@ public class WebUTest {
     public void testRemove() throws InterruptedException {
         driver.navigate().to("http://localhost:8080/treepage");
         driver.findElement(By.id("add")).sendKeys("1");
-		Thread.sleep(1000);
+	Thread.sleep(1000);
         driver.findElement(By.id("badd")).click();
+        Thread.sleep(1000);
         driver.findElement(By.id("del")).sendKeys("1");
-		Thread.sleep(1000);
+	Thread.sleep(1000);
         driver.findElement(By.id("bdel")).click();
-        (new WebDriverWait(driver, 10)).until(
+        Thread.sleep(1000);
+        (new WebDriverWait(driver, 30)).until(
             (ExpectedCondition<Boolean>) (WebDriver d) -> d.findElement(By.id("bfactors"))
                 .getAttribute("value").equals(""));
-        Thread.sleep(1000); 
         driver.findElement(By.id("clear")).click();
+        Thread.sleep(1000);
         driver.close();
     }
     
